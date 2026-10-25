@@ -14,7 +14,9 @@ const client = process.env.OPENAI_API_KEY ? new OpenAI({ apiKey: process.env.OPE
 
 app.use(express.json({ limit: "25mb" }));
 app.use(express.static("public"));
-
+app.get("/", (_req, res) => {
+  res.sendFile("index.html", { root: process.cwd() });
+});
 const MASTER = `You are L’EORA Content Image Reader V1, an editorial image interpreter and phrase creator.
 
 Read the uploaded image carefully. Build meaning only from what is actually visible and from optional user context. Do not invent personal facts.
